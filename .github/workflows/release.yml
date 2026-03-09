@@ -1,0 +1,34 @@
+name: Release Skill
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Make release script executable
+        run: chmod +x ./release.sh
+
+      - name: Package Gemini skill
+        run: ./release.sh gemini
+
+      - name: Collect asset filename
+        run: |
+          FILE=$(ls -1 news-verify-gemini-v*.zip | head -n 1)
+          if [ -z "$FILE" ]; then
+            echo "Packaged file not found"
+            exit 1
+          fi
+          echo "PACKAGED_FILE=$FILE" >> $GITHUB_ENV
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.PACKAGED_FILE }}
+          generate_release_notes: true
