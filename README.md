@@ -42,13 +42,13 @@
 
 ## 快速開始
 
-```bash
-git clone https://github.com/slee124565/gemini-news-verify-skill.git
-cd gemini-news-verify-skill
-./install.sh gemini local
+最簡單的方式：直接在 Gemini CLI 中說：
+
+```text
+請幫我從 https://github.com/slee124565/gemini-news-verify-skill 安裝 news-verify skill 到目前 workspace
 ```
 
-然後在 Gemini CLI 內執行：
+Gemini 會自動 clone repo 並執行安裝腳本，完成後重新載入：
 
 ```text
 /skills reload
@@ -57,7 +57,23 @@ cd gemini-news-verify-skill
 
 ## 安裝
 
-### 選項 A：Clone repo 後安裝到目前 workspace
+### 選項 A（最簡）：透過 Gemini CLI prompt 安裝
+
+直接在 Gemini CLI 對話視窗輸入：
+
+```text
+請幫我從 https://github.com/slee124565/gemini-news-verify-skill 安裝 news-verify skill 到目前 workspace
+```
+
+Gemini 會自動處理 clone 與安裝，不需要手動執行任何指令。
+
+安裝完成後執行：
+
+```text
+/skills reload
+```
+
+### 選項 B：Clone repo 後安裝到目前 workspace
 
 ```bash
 git clone https://github.com/slee124565/gemini-news-verify-skill.git
@@ -71,7 +87,7 @@ cd gemini-news-verify-skill
 /skills reload
 ```
 
-### 選項 B：安裝到 user scope
+### 選項 C：安裝到 user scope（所有 workspace 皆可使用）
 
 ```bash
 git clone https://github.com/slee124565/gemini-news-verify-skill.git
@@ -79,7 +95,7 @@ cd gemini-news-verify-skill
 ./install.sh gemini user
 ```
 
-### 選項 C：從 Release 安裝
+### 選項 D：從 Release 安裝
 
 到 [Releases](https://github.com/slee124565/gemini-news-verify-skill/releases) 下載對應版本，例如：
 
